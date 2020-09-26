@@ -1,6 +1,6 @@
 # XKCD API
 
-> API for the [XKCD](https://xkcd.com) comics.
+> A CORS enabled API for the [XKCD](https://xkcd.com) comics.
 
 # Usage
 
