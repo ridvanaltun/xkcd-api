@@ -1,0 +1,27 @@
+{
+  "name": "xkcd-api",
+  "version": "1.0.0",
+  "description": "XKCD API",
+  "main": "api/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod"
+  },
+  "keywords": [
+    "xkcd",
+    "api"
+  ],
+  "author": "Ridvan Altun",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/node": "^1.8.3",
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "vercel": "^20.1.1"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
