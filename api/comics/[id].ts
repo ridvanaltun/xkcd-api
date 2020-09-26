@@ -23,11 +23,11 @@ module.exports = async (req: NowRequest, res: NowResponse) => {
     }
   } catch (error) {
     if (error.response && error.response.status === 404) {
-      res.status(404).json({ detail: 'Not founded.' })
+      res.status(404).json({ detail: 'Not found.' })
     } else {
       // unknown error
       res.status(500).json({
-        detail: 'An unknown error occured.',
+        detail: 'An unknown error occurred.',
         error: error.message,
       })
     }
