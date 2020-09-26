@@ -1,4 +1,6 @@
-const allowCors = fn => async (req, res) => {
+import { NowRequest, NowResponse } from '@vercel/node'
+
+const allowCors = fn => async (req: NowRequest, res: NowResponse) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
   res.setHeader('Access-Control-Allow-Origin', '*')
   // another common pattern
