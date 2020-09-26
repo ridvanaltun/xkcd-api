@@ -1,6 +1,7 @@
 import { NowRequest, NowResponse } from '@vercel/node'
+import { allowCors } from '../utils'
 
-export default (req: NowRequest, res: NowResponse) => {
+const index = (req: NowRequest, res: NowResponse) => {
   const url =
     req.headers['x-forwarded-proto'] +
     '://' +
@@ -12,3 +13,5 @@ export default (req: NowRequest, res: NowResponse) => {
     endpoints: [`${url}/comics/1`, `${url}/comics/latest`],
   })
 }
+
+export default allowCors(index)

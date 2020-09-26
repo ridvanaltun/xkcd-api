@@ -1,10 +1,11 @@
 import { NowRequest, NowResponse } from '@vercel/node'
 import axios from 'axios'
+import { allowCors } from '../../utils'
 
 const XKCD_DOMAIN = 'https://xkcd.com'
 const XKCD_END_PATH = 'info.0.json'
 
-module.exports = async (req: NowRequest, res: NowResponse) => {
+const latest = async (req: NowRequest, res: NowResponse) => {
   try {
     const response = await axios(`${XKCD_DOMAIN}/${XKCD_END_PATH}`)
     const { num: id, img } = response.data
@@ -31,3 +32,5 @@ module.exports = async (req: NowRequest, res: NowResponse) => {
     }
   }
 }
+
+export default allowCors(latest)
