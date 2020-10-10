@@ -11,6 +11,9 @@ https://xkcd-api.ridvanaltun.vercel.app/api
 # latest comic
 https://xkcd-api.ridvanaltun.vercel.app/api/comics/latest
 
+# random comic
+https://xkcd-api.ridvanaltun.vercel.app/api/comics/random
+
 # comic #1000
 https://xkcd-api.ridvanaltun.vercel.app/api/comics/1000
 ```

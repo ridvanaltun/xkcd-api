@@ -10,7 +10,7 @@ const index = (req: NowRequest, res: NowResponse) => {
   return res.json({
     status: 200,
     message: 'It is alive!',
-    endpoints: [`${url}/comics/1`, `${url}/comics/latest`],
+    endpoints: [`${url}/comics/1`, `${url}/comics/latest`, `${url}/comics/random`],
   })
 }
 
