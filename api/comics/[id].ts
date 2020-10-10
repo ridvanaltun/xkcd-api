@@ -12,6 +12,18 @@ const commics = async (req: NowRequest, res: NowResponse) => {
     const response = await axios(`${XKCD_DOMAIN}/${id}/${XKCD_END_PATH}`)
     const { img } = response.data
 
+    // show comics directly
+    if (req.query.img === 'true') {
+      const buffer = await axios.get(img, { responseType: 'arraybuffer' })
+      const bufferData = Buffer.from(buffer.data, "utf-8")
+      res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Content-Length': bufferData.length
+      });
+      res.write(bufferData)
+      return res.end();
+    }
+
     if (id >= 1084) {
       res.status(200).json({
         ...response.data,

@@ -7,21 +7,33 @@ const XKCD_END_PATH = 'info.0.json'
 
 const random = async (req: NowRequest, res: NowResponse) => {
   try {
-    // fetch last comic
+    // fetch last comics
     const lastComic = await axios(`${XKCD_DOMAIN}/${XKCD_END_PATH}`)
     const { num: latestId } = lastComic.data
 
     // generate random number between comics
     const randomNumber = Math.floor(Math.random() * latestId) + 1
 
-    // fetch random comic
+    // fetch a random comics
     const randomComic = await axios(`${XKCD_DOMAIN}/${randomNumber}/${XKCD_END_PATH}`)
-    const { img } = randomComic.data
+    const { img: randomComicImg } = randomComic.data
+
+    // show comics directly
+    if (req.query.img === 'true') {
+      const buffer = await axios.get(randomComicImg, { responseType: 'arraybuffer' })
+      const bufferData = Buffer.from(buffer.data, "utf-8")
+      res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Content-Length': bufferData.length
+      });
+      res.write(bufferData)
+      return res.end();
+    }
 
     if (randomNumber >= 1084) {
       res.status(200).json({
         ...randomComic.data,
-        imgRetina: `${img.replace('.png', '')}_2x.png`,
+        imgRetina: `${randomComicImg.replace('.png', '')}_2x.png`,
       })
     } else {
       res.status(200).json({
